@@ -2,29 +2,29 @@
   <nav class="navbar" role="navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">PicoShare</a>
+        <a class="navbar-item" href="/">Thunder-File Share</a>
         <a
-          role="button"
-          class="navbar-burger"
-          aria-label="menu"
           aria-expanded="false"
+          aria-label="menu"
+          class="navbar-burger"
           data-target="navbar-links"
+          role="button"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div id="navbar-links" class="navbar-menu">
+      <div class="navbar-menu" id="navbar-links">
         {{ if .IsAuthenticated }}
           <div class="navbar-start">
             <div class="navbar-item">
-              <a class="button is-primary is-success" role="menuitem" href="/"
+              <a class="button is-primary" href="/" role="menuitem"
                 >Upload</a
               >
             </div>
-            <a class="navbar-item" role="menuitem" href="/files">Files</a>
-            <a class="navbar-item" role="menuitem" href="/guest-links"
+            <a class="navbar-item" href="/files" role="menuitem">Files</a>
+            <a class="navbar-item" href="/guest-links" role="menuitem"
               >Guest Links</a
             >
           </div>
@@ -34,20 +34,20 @@
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link" role="menuitem">System</a>
               <div class="navbar-dropdown">
-                <a class="navbar-item" role="menuitem" href="/information"
+                <a class="navbar-item" href="/information" role="menuitem"
                   >Information</a
                 >
-                <a class="navbar-item" role="menuitem" href="/settings"
+                <a class="navbar-item" href="/settings" role="menuitem"
                   >Settings</a
                 >
-                <a id="navbar-log-out" class="navbar-item" role="menuitem"
+                <a class="navbar-item" id="navbar-log-out" role="menuitem"
                   >Log Out</a
                 >
               </div>
             </div>
           {{ else }}
             <div class="navbar-item">
-              <a class="button is-primary" role="menuitem" href="/login">
+              <a class="button is-primary is-rounded" href="/login" role="menuitem">
                 Log In
               </a>
             </div>

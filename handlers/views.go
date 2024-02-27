@@ -35,7 +35,7 @@ func (s Server) indexGet() http.HandlerFunc {
 		if err := renderTemplate(w, "index.html", struct {
 			commonProps
 		}{
-			commonProps: makeCommonProps("PicoShare", r.Context()),
+			commonProps: makeCommonProps("ThunderShare", r.Context()),
 		}, template.FuncMap{}); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -122,7 +122,7 @@ func (s Server) guestLinksNewGet() http.HandlerFunc {
 			commonProps
 			ExpirationOptions []expirationOption
 		}{
-			commonProps: makeCommonProps("PicoShare - New Guest Link", r.Context()),
+			commonProps: makeCommonProps("ThunderShare - New Guest Link", r.Context()),
 			ExpirationOptions: []expirationOption{
 				{"1 day", time.Now().AddDate(0, 0, 1), false},
 				{"7 days", time.Now().AddDate(0, 0, 7), false},
@@ -155,7 +155,7 @@ func (s Server) fileIndexGet() http.HandlerFunc {
 			commonProps
 			Files []picoshare.UploadMetadata
 		}{
-			commonProps: makeCommonProps("PicoShare - Files", r.Context()),
+			commonProps: makeCommonProps("ThunderShare - Files", r.Context()),
 			Files:       em,
 		}, template.FuncMap{
 			"formatDate": func(t time.Time) string {
@@ -200,7 +200,7 @@ func (s Server) fileEditGet() http.HandlerFunc {
 			commonProps
 			Metadata picoshare.UploadMetadata
 		}{
-			commonProps: makeCommonProps("PicoShare - Edit", r.Context()),
+			commonProps: makeCommonProps("ThunderShare - Edit", r.Context()),
 			Metadata:    metadata,
 		}, template.FuncMap{
 			"isNeverExpire": func(et picoshare.ExpirationTime) bool {
@@ -250,7 +250,7 @@ func (s Server) fileInfoGet() http.HandlerFunc {
 			Metadata      picoshare.UploadMetadata
 			DownloadCount int
 		}{
-			commonProps:   makeCommonProps("PicoShare - File Information", r.Context()),
+			commonProps:   makeCommonProps("ThunderShare - File Information", r.Context()),
 			Metadata:      metadata,
 			DownloadCount: len(downloads),
 		}, template.FuncMap{
@@ -324,7 +324,7 @@ func (s Server) fileDownloadsGet() http.HandlerFunc {
 			Metadata  picoshare.UploadMetadata
 			Downloads []downloadRecord
 		}{
-			commonProps: makeCommonProps("PicoShare - Downloads", r.Context()),
+			commonProps: makeCommonProps("ThunderShare - Downloads", r.Context()),
 			Metadata:    metadata,
 			Downloads:   records,
 		}, template.FuncMap{
@@ -363,7 +363,7 @@ func (s Server) fileConfirmDeleteGet() http.HandlerFunc {
 			commonProps
 			Metadata picoshare.UploadMetadata
 		}{
-			commonProps: makeCommonProps("PicoShare - Delete", r.Context()),
+			commonProps: makeCommonProps("ThunderShare - Delete", r.Context()),
 			Metadata:    metadata,
 		}, template.FuncMap{}); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -377,7 +377,7 @@ func (s Server) authGet() http.HandlerFunc {
 		if err := renderTemplate(w, "auth.html", struct {
 			commonProps
 		}{
-			commonProps: makeCommonProps("PicoShare - Log in", r.Context()),
+			commonProps: makeCommonProps("ThunderShare - Log in", r.Context()),
 		}, template.FuncMap{}); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -448,7 +448,7 @@ func (s Server) uploadGet() http.HandlerFunc {
 			MaxNoteLength     int
 			GuestLinkMetadata picoshare.GuestLink
 		}{
-			commonProps:       makeCommonProps("PicoShare - Upload", r.Context()),
+			commonProps:       makeCommonProps("ThunderShare - Upload", r.Context()),
 			MaxNoteLength:     parse.MaxFileNoteBytes,
 			ExpirationOptions: expirationOptions,
 		}, template.FuncMap{
@@ -487,7 +487,7 @@ func (s Server) guestUploadGet() http.HandlerFunc {
 			if err := renderTemplate(w, "guest-link-inactive.html", struct {
 				commonProps
 			}{
-				commonProps: makeCommonProps("PicoShare - Guest Link Inactive", r.Context()),
+				commonProps: makeCommonProps("ThunderShare - Guest Link Inactive", r.Context()),
 			}, template.FuncMap{}); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
@@ -500,7 +500,7 @@ func (s Server) guestUploadGet() http.HandlerFunc {
 			ExpirationOptions []interface{}
 			GuestLinkMetadata picoshare.GuestLink
 		}{
-			commonProps:       makeCommonProps("PicoShare - Upload", r.Context()),
+			commonProps:       makeCommonProps("ThunderShare - Upload", r.Context()),
 			GuestLinkMetadata: gl,
 		}, template.FuncMap{
 			"formatExpiration": func(t time.Time) string {
@@ -540,7 +540,7 @@ func (s Server) settingsGet() http.HandlerFunc {
 			ExpirationTimeUnit string
 			DefaultNeverExpire bool
 		}{
-			commonProps:        makeCommonProps("PicoShare - Settings", r.Context()),
+			commonProps:        makeCommonProps("ThunderShare - Settings", r.Context()),
 			DefaultExpiration:  defaultExpiration,
 			ExpirationTimeUnit: expirationTimeUnit,
 			DefaultNeverExpire: defaultNeverExpire,
@@ -569,7 +569,7 @@ func (s Server) systemInformationGet() http.HandlerFunc {
 			BuildTime         time.Time
 			Version           string
 		}{
-			commonProps:       makeCommonProps("PicoShare - System Information", r.Context()),
+			commonProps:       makeCommonProps("ThunderShare - System Information", r.Context()),
 			TotalServingBytes: spaceUsage.TotalServingBytes,
 			DatabaseFileBytes: spaceUsage.DatabaseFileSize,
 			UsedBytes:         spaceUsage.FileSystemUsedBytes,

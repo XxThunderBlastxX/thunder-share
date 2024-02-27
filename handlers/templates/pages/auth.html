@@ -2,7 +2,7 @@
 {{ end }}
 
 {{ define "script-tags" }}
-  <script type="module" nonce="{{ .CspNonce }}">
+  <script nonce="{{ .CspNonce }}" type="module">
     import { authenticate, logOut } from "/js/controllers/auth.js";
 
     function setAuthFormState(isEnabled) {
@@ -46,17 +46,17 @@
 {{ define "content" }}
   <h1 class="title">Log In</h1>
 
-  <form id="auth-form" class="mb-2" action="/auth">
+  <form action="/auth" class="mb-2" id="auth-form">
     <div class="field">
       <label class="label">Passphrase</label>
       <div class="control">
         <input
+          autofocus
           class="input"
           id="secret"
-          type="password"
-          required
-          autofocus
           placeholder="Passphrase"
+          required
+          type="password"
         />
       </div>
     </div>
@@ -67,19 +67,10 @@
     </div>
   </form>
 
-  <div id="error" class="is-hidden">
+  <div class="is-hidden" id="error">
     <article class="message is-danger">
-      <div id="error-message" class="message-body">Placeholder error.</div>
+      <div class="message-body" id="error-message">Placeholder error.</div>
     </article>
-  </div>
-
-  <div class="mt-6">
-    <h3>Don't know the password?</h3>
-    <p>
-      Visit our
-      <a href="https://github.com/mtlynch/picoshare">Github repo</a> to create
-      your own PicoShare server.
-    </p>
   </div>
 {{ end }}
 
